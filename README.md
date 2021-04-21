@@ -24,6 +24,9 @@ $ git clone https://github.com/duvrdx/podcastr_nlw5.git
 # Install Dependencies
 $ npm install
 
+# Run Server
+$ npm run server
+
 # Run Aplication
 $ npm run dev
 ```
