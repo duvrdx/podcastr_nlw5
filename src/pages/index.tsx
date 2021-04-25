@@ -7,6 +7,8 @@ import { convertDurationToTimeString } from "../utils/convertDurationToTimeStrin
 import Image from 'next/image'
 
 import styles from "./home.module.scss";
+import { useContext } from "react";
+import { PlayerContext } from "../contexts/PlayerContext";
 
 type Episode = {
   episodes: Array<{
@@ -28,6 +30,9 @@ type HomeProps = {
 
 
 export default function Home({latestEpisodes, allEpisodes}) {
+
+  const {play} = useContext(PlayerContext);
+
   return (
 
     <div className={styles.homepage}>
@@ -56,7 +61,9 @@ export default function Home({latestEpisodes, allEpisodes}) {
 
                   </div>
 
-                  <button type="button"> <img src="/play-green.svg" alt="Tocar episódio"/> </button>
+                  <button type="button" onClick={()=>play(episode)} >
+                    <img src="/play-green.svg" alt="Tocar episódio"/>
+                  </button>
 
                 </li>
               )

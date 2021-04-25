@@ -1,6 +1,17 @@
+import { useContext } from "react";
+import { PlayerContext } from "../../contexts/PlayerContext";
 import styles from "./styles.module.scss";
+import Image from 'next/image'
+import Slider from 'rc-slider'
+
+import 'rc-slider/assets/index.css'
 
 export default function Player(){
+
+    const {episodeList, currentEpisodeIndex} = useContext(PlayerContext)
+
+    const episode = episodeList[currentEpisodeIndex]
+
     return(
         <div className={styles.playerContainer}>
             <header>
@@ -8,37 +19,62 @@ export default function Player(){
                 <strong>Tocando agora</strong>
             </header>
 
-            <div className={styles.emptyPlayer}>
-                <strong>Selecione um podcast para ouvir</strong>
-            </div>
+            {
+                episode ? (
 
-            <footer className={styles.empty}>
+                    <div className={styles.currentEpisode}>
+                        <Image width={592} height={592} src={episode.thumbnail} objectFit="cover" />
+                        <strong>{episode.title}</strong>
+                        <p>{episode.members}</p>
+                    </div>
+                
+                ) : (
+                    
+                    <div className={styles.emptyPlayer}>
+                        <strong>Selecione um podcast para ouvir</strong>
+                     </div>
+
+                )
+            }
+            
+            <footer className={episode ? '' : styles.empty}>
+                
                 <div className={styles.progress}>
                     <span>00:00</span>
                     <div className={styles.slider}>
-                        <div className={styles.emptySlider} />      
+                        {
+                            episode ? (
+                                <Slider
+                                railStyle={{backgroundColor: '#9f75ff'}}  
+                                trackStyle={{backgroundColor: '#04d361'}}
+                                handleStyle={{borderColor: '#04d361', borderWidth:'4px'}}
+                                />
+                            ) : (
+                                <div className={styles.emptySlider} />  
+                            )
+                        }    
                     </div>
                     <span>00:00</span>
                 </div>
 
                 <div className={styles.buttons}>
-                    <button type="button">
+                    <button type="button" disabled={!episode}>
                         <img src="/shuffle.svg" alt="Embaralhar"/>
                     </button>
 
-                    <button type="button">
+                    <button type="button" disabled={!episode}>
                         <img src="/play-previous.svg" alt="Tocar anterior"/>
                     </button>
 
-                    <button type="button" className={styles.playButton}>
+                    <button type="button" disabled={!episode} className={styles.playButton}>
                         <img src="/play.svg" alt="Tocar"/>
                     </button>
 
-                    <button type="button">
+                    <button type="button" disabled={!episode}>
                         <img src="/play-next.svg" alt="Tocar próxima"/>
                     </button>
 
-                    <button type="button">
+                    <button type="button" disabled={!episode}>
                         <img src="/repeat.svg" alt="Repetir"/>
                     </button>
                     
