@@ -11,8 +11,32 @@ This project was made using the follow technologies:
 * [Typescript](https://www.typescriptlang.org/)      
 * [React](https://reactjs.org/)      
 * [Next.js](https://nextjs.org/)      
-     
+
+# 🎥 Screnshots & Screen Recording
+
+```
+Homepage
+```
+<div>
+     <img src=".github/screenshots/homepage.png"/>
+</div>
+
+```
+Homepage
+```
+<div>
+     <img src=".github/screenshots/description.png"/>
+</div>
+
+```
+Demo
+```
+<div>
+     <img src=".github/gifs/srcreenrecord_1.gif"/>
+</div>
+
 # :construction_worker: How to run
+
 ```bash
 # Clone Repository
 $ git clone https://github.com/duvrdx/podcastr_nlw5.git
